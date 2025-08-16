@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Book</title>
+    <link rel="stylesheet" href="../styles/main.css" />
+</head>
+<body>
+    <h2><%= book.title %> - <%= book.author %></h2>
+    <div class="book">
+        <div class="book-cover">
+            <img src="<%= book.cover %>" alt="book cover">
+        </div>
+        <div class="book-details"> 
+            <p><b>ISBN:</b> <%= book.isbn %></p>
+            <p><b>Title:</b> <%= book.title %></p>
+            <p><b>Author:</b> <%= book.author %></p>
+            <p>
+                <b>Read:</b>
+                <% if (book.date_read) { 
+                    const d = new Date(book.date_read);
+                    const mm = String(d.getMonth() + 1).padStart(2, '0');
+                    const dd = String(d.getDate()).padStart(2, '0');
+                    const yyyy = d.getFullYear();
+                %>
+                <%= mm + '/' + dd + '/' + yyyy %>
+                <% } else { %>
+                    N/A
+                <% } %>
+            </p>
+            <p><b>Rating:</b> <%= book.rating %></p>
+        </div>
+    </div>
+
+    <!-- Show Summary if not empty -->
+    <% if (book.summary && book.summary.length > 0) { %>
+        <h3>Summary</h3>
+        <p><%= book.summary %></p>
+    <% } %>
+
+    <!-- Show Notes according to no. of notes saved -->
+    <% if (book.notes && book.notes.length > 0) { %>
+        <br>
+        <h3>Notes</h3>
+        <% for (let i = 1; i <= book.notes.length; i++) { %>
+            <p><%= i %>. <%= book.notes[i-1] %></p>
+        <% } %>
+    <% } %>
+
+    <br>
+    <form action="/edit/<%= book.id %>" method="get" style="display: inline;">
+        <a href="/edit/<%= book.id %>">
+            <button class="button">Edit Book</button>
+        </a>
+    </form>
+
+    <!-- Delete button for the book -->
+    <br><br>
+    <form action="/delete/<%= book.id %>" method="post" style="display: inline;">
+        <a href="/delete/<%= book.id %>">
+            <button class="button">Remove Book</button>
+        </a>
+    </form>
+</body>
+</html>

@@ -6,7 +6,7 @@ This book notes app involves ejs and PostgreSQL.
 ![alt text](images/image1.jpg)
 </br>
 </br>
-![alt text](images/image3.jpg)
+![alt text](images/image2.jpg)
 
 ### Copy the code to local directory
 Run the following command in your local folder after logging in with your Github account:
@@ -18,6 +18,9 @@ git clone https://github.com/ma-edw/book_notes/
 ```
 npm install
 ```
+
+### Create a .env file
+Include your PostgreSQL database password and the name of the database to store the books and the information in the file
 
 ### Run the code
 ```

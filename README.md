@@ -22,6 +22,12 @@ npm install
 ### Create a .env file
 Include your PostgreSQL database password and the name of the database to store the books in the file
 
+For example,
+```
+DATABASE = "Database_name"
+DATABASE_PW = "Database_password"
+```
+
 ### Run the code
 ```
 npm start
